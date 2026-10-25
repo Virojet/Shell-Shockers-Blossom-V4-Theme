@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.1
+// @version      4.0.2
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -305,4 +305,18 @@
     document.body ? settle() : document.addEventListener("DOMContentLoaded", settle, { once: true });
   };
   document.documentElement ? mount() : new MutationObserver((_, o) => document.documentElement && (o.disconnect(), mount())).observe(document, { childList: true });
+
+  // install-counter:begin
+  // Install counter: one anonymous hit per browser, sent once and never again (key "ssBlossomV4-install-counted").
+  // Nothing is sent but the hit itself: no settings, names or IDs. Total: abacus.jasoncameron.dev/get/virojet-blossom-v4/installs
+  (() => {
+    const KEY = "ssBlossomV4-install-counted";
+    try { if (localStorage.getItem(KEY)) return; } catch (e) { return; }
+    setTimeout(() => {
+      fetch("https://abacus.jasoncameron.dev/hit/virojet-blossom-v4/installs", { credentials: "omit", referrerPolicy: "no-referrer" })
+        .then(r => { if (r.ok) localStorage.setItem(KEY, "1"); })
+        .catch(() => { });
+    }, 8000);
+  })();
+  // install-counter:end
 })();

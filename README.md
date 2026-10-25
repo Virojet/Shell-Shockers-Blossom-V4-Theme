@@ -10,8 +10,9 @@
 
 [![Install Blossom V4](https://img.shields.io/badge/Install_Blossom_V4-one_click-f9b5b5?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://raw.githubusercontent.com/Virojet/Shell-Shockers-Blossom-V4-Theme/main/Shell-Shockers-Blossom-V4.user.js)
 
-[![Version](https://img.shields.io/badge/version-4.0.1-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
+[![Version](https://img.shields.io/badge/version-4.0.2-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](./LICENSE)
+[![Installs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fvirojet-blossom-v4%2Finstalls&query=%24.value&label=installs&color=2ea44f&style=flat-square)](#privacy)
 
 </div>
 
@@ -45,10 +46,14 @@
 
 ## Good to know
 
-- It's cosmetic only: it adds one stylesheet and runs no other code. It **updates by itself** through Tampermonkey.
+- It's cosmetic only: it adds one stylesheet and runs no other code than the anonymous install count described under [Privacy](#privacy). It **updates by itself** through Tampermonkey.
 - The background art and kill-streak picture load from [Foggier01/Blossom-V3-Fix-by-Foggier](https://github.com/Foggier01/Blossom-V3-Fix-by-Foggier), the same images Blossom V3 used. Nothing about you is sent anywhere.
 - Works with [Better HUD](https://github.com/Virojet/Shell-Shockers-Better-Hud-Mod) (your crosshair settings still win) and shows up in the Mod Menu under Theme. Use one theme at a time, or the colours mix.
 - To turn it off, switch it off in Tampermonkey and reload the game.
+
+## Privacy
+
+- **Install count:** the first time it runs, one anonymous hit goes to a public counter ([Abacus](https://abacus.jasoncameron.dev)) so the installs badge above stays current. No settings, names or IDs. It's sent once per browser; the `ssBlossomV4-install-counted` key in site storage remembers it.
 
 ## Credits
 
