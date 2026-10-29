@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.2
+// @version      4.0.3
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -134,6 +134,9 @@
       --ss-adblocker-text: #fff;
       --ss-big-message-border-color: var(--bv-pink);
     }
+
+    /* The game's selection uses --ss-blue5 (white here). Keep selected text readable on blossom pink. */
+    ::selection { background: var(--bv-pink); color: var(--bv-wine); text-shadow: none; }
 
     /* ---------- Home screen ---------- */
     .load_screen { background: var(--bv-art) center / cover no-repeat; }
