@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.3
+// @version      4.0.4
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -20,15 +20,14 @@
 // @match        https://biologyclass.club/*
 // @match        https://deadlyegg.com/*
 // @match        https://deathegg.world/*
-// @match        https://egg.dance/*
 // @match        https://eggboy.club/*
 // @match        https://eggboy.xyz/*
 // @match        https://eggcombat.com/*
+// @match        https://egg.dance/*
 // @match        https://eggfacts.fun/*
 // @match        https://egghead.institute/*
 // @match        https://eggisthenewblack.com/*
 // @match        https://eggsarecool.com/*
-// @match        https://eggshooter.best/*
 // @match        https://geometry.best/*
 // @match        https://geometry.monster/*
 // @match        https://geometry.pw/*
@@ -37,6 +36,7 @@
 // @match        https://hardshell.life/*
 // @match        https://humanorganising.org/*
 // @match        https://mathactivity.xyz/*
+// @match        https://mathactivity.club/*
 // @match        https://mathdrills.info/*
 // @match        https://mathdrills.life/*
 // @match        https://mathfun.rocks/*
@@ -45,28 +45,51 @@
 // @match        https://mathlete.fun/*
 // @match        https://mathlete.pro/*
 // @match        https://overeasy.club/*
-// @match        https://scrambled.best/*
+// @match        https://risenegg.com/*
 // @match        https://scrambled.tech/*
 // @match        https://scrambled.today/*
 // @match        https://scrambled.us/*
 // @match        https://scrambled.world/*
-// @match        https://shellsocks.com/*
 // @match        https://shellshockers.club/*
+// @match        https://shellshockers.life/*
 // @match        https://shellshockers.site/*
 // @match        https://shellshockers.us/*
 // @match        https://shellshockers.world/*
 // @match        https://shellshockers.xyz/*
+// @match        https://shellsocks.com/*
 // @match        https://softboiled.club/*
 // @match        https://urbanegger.com/*
 // @match        https://violentegg.club/*
 // @match        https://violentegg.fun/*
 // @match        https://yolk.best/*
 // @match        https://yolk.life/*
-// @match        https://yolk.quest/*
 // @match        https://yolk.rocks/*
 // @match        https://yolk.tech/*
+// @match        https://yolk.quest/*
 // @match        https://yolk.today/*
 // @match        https://zygote.cafe/*
+// @match        https://shellshockers.best/*
+// @match        https://eggboy.me/*
+// @match        https://algebra.monster/*
+// @match        https://combateggs.com/*
+// @match        https://deathegg.life/*
+// @match        https://eggbattle.com/*
+// @match        https://egggames.best/*
+// @match        https://eggshock.com/*
+// @match        https://eggshock.me/*
+// @match        https://eggshock.net/*
+// @match        https://eggshooter.best/*
+// @match        https://eggshooter.com/*
+// @match        https://eggwarfare.com/*
+// @match        https://eggwars.io/*
+// @match        https://scrambled.best/*
+// @match        https://shellplay.live/*
+// @match        https://shellshock.guru/*
+// @match        https://shellshockers.ca/*
+// @match        https://shellshockers.today/*
+// @match        https://shellshockers.website/*
+// @match        https://shellshockers.wiki/*
+// @match        https://yolk.monster/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
@@ -82,6 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
+  css.dataset.version = "4.0.4";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -93,6 +117,43 @@
       --bv-rose: #ffb6c1;
       --bv-wine: #5b1730;
       --bv-field: #323232;
+      --bv-ink: #fff4f7;
+      --bv-sub: rgb(255 224 234 / .78);
+      --bv-glass: rgb(24 6 14 / .64);
+      --bv-glass-hi: rgb(46 12 26 / .78);
+      --bv-glass-on: rgb(72 20 42 / .82);
+      --bv-edge: rgb(249 181 181 / .34);
+      --bv-edge-hi: rgb(254 197 229 / .68);
+      --bv-accent: linear-gradient(180deg, #ff8ab5 0%, #e04b7f 100%);
+      --bv-accent-solid: #ee5e91;
+      --bv-accent-hi: #ff7aa8;
+      --bv-accent-edge: #9b224d;
+      --bv-accent-glow: rgb(238 94 145 / .38);
+      --bv-bar-bg: linear-gradient(180deg, rgb(32 8 18 / .86), rgb(20 5 12 / .92));
+
+      /* Better HUD palette tokens */
+      --ssb-ink: var(--bv-ink);
+      --ssb-blue: var(--bv-pink);
+      --ssb-blue-hi: var(--bv-pink-light);
+      --ssb-blue-shadow: #3a0d1e;
+      --ssb-panel: #2b0b18;
+      --ssb-orange: var(--bv-accent-solid);
+      --ssb-yolk: var(--bv-accent-solid);
+      --ssb-yolk-hi: var(--bv-accent-hi);
+      --ssb-yolk-shadow: var(--bv-accent-edge);
+      --ssb-red: #e0365f;
+      --ssb-red-hi: #f25279;
+      --ssb-red-shadow: #7a1530;
+      --ssb-red-shadow-hi: #941c3c;
+      --ssb-muted: var(--bv-sub);
+      --ssb-deep: #1a060e;
+      --ssb-line: rgb(249 181 181 / .24);
+      --ssb-card: rgb(34 10 20 / .78);
+      --ssb-card-hi: rgb(56 16 32 / .86);
+      --ssb-card-shadow: #18050d;
+      --ssb-card-shadow-hi: #290916;
+      --ssb-accent: var(--bv-pink);
+      --ssb-focus: var(--bv-pink-light);
 
       --ss-yolk0: #ff6060;
       --ss-yolk: var(--bv-pink);
@@ -297,6 +358,416 @@
     #giveStuffPopup.twitchDrops .twitch-btn { background: #000; }
     #giveStuffPopup.twitchDrops footer { background-color: transparent; }
     #giveStuffPopup.twitchDrops .egg-give-stuff, #giveStuffPopup.twitchDrops .grid-item { background-color: rgb(0 0 0 / .23); }
+
+    /* ---------- Better HUD compatibility ---------- */
+    /* MODS & CROSSHAIR tabs: wine text on the light-pink active tab, crisp white on dark inactive tabs. */
+    html #mod-settings-tab:not(.mod-tab-is-active),
+    html #mod-crosshair-tab:not(.mod-tab-is-active) {
+      background: #000 !important;
+      border-color: #fff !important;
+      color: #fff !important;
+    }
+    html #mod-settings-tab.mod-tab-is-active,
+    html #mod-crosshair-tab.mod-tab-is-active {
+      background: var(--bv-pink) !important;
+      border-color: #fff !important;
+      color: var(--bv-wine) !important;
+    }
+    html #mod-settings-tab.mod-tab-is-active .mod-tab-label,
+    html #mod-crosshair-tab.mod-tab-is-active .mod-tab-label {
+      color: var(--bv-wine) !important;
+      text-shadow: none !important;
+    }
+
+    /* MODS & CROSSHAIR shared frosted-glass palette */
+    html #popupInnards.mod-tab-active {
+      --pm-glass: var(--bv-glass);
+      --pm-glass-hi: var(--bv-glass-hi);
+      --pm-edge: var(--bv-edge);
+      --pm-sub: var(--bv-sub);
+      --pm-lift: 0 10px 28px rgb(0 0 0 / .42);
+      --pm-orange: var(--bv-accent);
+      --pm-orange-edge: var(--bv-accent-edge);
+      --pm-line: rgb(249 181 181 / .18);
+      --pm-field: rgb(18 5 11 / .82);
+    }
+
+    /* Sidebar & Crosshair left panel */
+    html #popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-top-bar,
+    html #popupInnards > #mod-crosshair-section .ch2-preview-col {
+      background: linear-gradient(180deg, rgb(28 7 16 / .76), rgb(16 4 10 / .70)) !important;
+      border-color: var(--bv-edge) !important;
+      box-shadow: inset 0 1px 0 rgb(255 215 228 / .18), var(--pm-lift) !important;
+    }
+
+    /* Search box */
+    html #popupInnards.mod-tab-active #mod-top-bar .mod-search {
+      background: rgb(16 5 10 / .84) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f9b5b5' stroke-width='3' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat 11px 50% / 16px 16px !important;
+      border-color: rgb(249 181 181 / .42) !important;
+      color: var(--bv-ink) !important;
+      box-shadow: inset 0 2px 6px rgb(0 0 0 / .35) !important;
+    }
+    html #mod-top-bar .mod-search::placeholder { color: rgb(249 181 181 / .62); }
+    html #mod-top-bar .mod-search-clear { background: var(--bv-accent-solid); color: #fff; }
+    html #mod-top-bar .mod-search-clear:hover { background: var(--bv-accent-hi); }
+
+    /* Active sidebar item & segmented controls */
+    html #popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-top-bar .mod-jump-chip.active,
+    html #popupInnards > #mod-crosshair-section .ch2-shape-btn.active,
+    html #mod-settings-section .mod-seg-btn[aria-pressed="true"] {
+      border-color: var(--bv-accent-edge) !important;
+      background: var(--bv-accent) !important;
+      color: #fff !important;
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / .38), inset 0 -3px 0 rgb(0 0 0 / .18), 0 6px 16px var(--bv-accent-glow) !important;
+    }
+    html #mod-settings-section .mod-seg,
+    html #popupInnards > #mod-crosshair-section .ch2-shape-row {
+      background: rgb(14 4 9 / .58) !important;
+      box-shadow: inset 0 1px 3px rgb(0 0 0 / .45), 0 0 0 1px rgb(249 181 181 / .18) !important;
+    }
+
+    /* Section headings & cards */
+    html #mod-settings-section.ssb-paged .mod-header,
+    html #popupInnards > #mod-crosshair-section .ch2-right-col .ch2-card-title,
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-header {
+      color: var(--bv-ink) !important;
+      text-shadow: 0 2px 8px rgb(0 0 0 / .48);
+      border-bottom-color: rgb(249 181 181 / .28) !important;
+    }
+    html #mod-settings-section.ssb-paged .mod-item,
+    html #mod-settings-section.ssb-paged .mod-slider-container,
+    html #mod-settings-section.ssb-paged .ssb-om-card,
+    html #popupInnards > #mod-crosshair-section .ch2-right-col :is(.ch2-card-enable, .ch2-card-list),
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-card {
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .12), 0 4px 12px rgb(0 0 0 / .28) !important;
+    }
+    html #mod-settings-section.ssb-paged .mod-item:hover,
+    html #mod-settings-section.ssb-paged .ssb-om-card:hover,
+    html #popupInnards > #mod-crosshair-section .ch2-right-col .ch2-card-enable:hover,
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-card:hover {
+      border-color: rgb(249 181 181 / .52) !important;
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .2), 0 8px 20px rgb(0 0 0 / .36) !important;
+    }
+    html #mod-settings-section.ssb-paged .mod-item:has(input:checked),
+    html #mod-settings-section.ssb-paged .ssb-om-card.on,
+    html #popupInnards > #mod-crosshair-section .ch2-right-col .ch2-card-enable:has(input:checked) {
+      background: var(--bv-glass-on) !important;
+      border-color: var(--bv-edge-hi) !important;
+    }
+
+    /* Toggle switches (off track) & gear button */
+    html #mod-settings-section.ssb-paged .mod-box,
+    html #popupInnards > #mod-crosshair-section .ch2-check-box {
+      background: rgb(255 210 224 / .2) !important;
+      box-shadow: inset 0 2px 4px rgb(0 0 0 / .42), 0 0 0 1px rgb(249 181 181 / .22);
+    }
+    html #mod-settings-section .ssb-uc-gear {
+      border-color: var(--bv-edge);
+      background: rgb(255 210 224 / .12);
+      color: var(--bv-pink-light);
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .16), 0 2px 6px rgb(0 0 0 / .26);
+    }
+    html #mod-settings-section .ssb-uc-gear:hover {
+      background: rgb(255 210 224 / .24);
+      border-color: var(--bv-edge-hi);
+      color: #fff;
+    }
+    html #mod-settings-section .ssb-uc-gear[aria-expanded="true"] {
+      background: rgb(238 94 145 / .28);
+      border-color: var(--bv-accent-solid);
+      color: #fff;
+    }
+
+    /* Sliders, number fields, color fields & dropdowns */
+    html #mod-settings-section .mod-slider {
+      background: rgb(255 215 228 / .26) !important;
+      border-color: rgb(249 181 181 / .32);
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-slider::-webkit-slider-runnable-track {
+      background: rgb(255 215 228 / .26);
+      box-shadow: inset 0 0 0 1px rgb(249 181 181 / .32);
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-slider::-moz-range-track {
+      background: rgb(255 215 228 / .26);
+      box-shadow: inset 0 0 0 1px rgb(249 181 181 / .32);
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-slider-wrap::before,
+    html #popupInnards > #mod-crosshair-section .ch2-slider-wrap::after { color: var(--bv-sub); }
+    html #mod-settings-section .mod-num-input,
+    html #popupInnards > #mod-crosshair-section .ch2-num,
+    html #popupInnards > #mod-crosshair-section .ch2-control-right {
+      background: rgb(16 5 10 / .84) !important;
+      color: var(--bv-ink) !important;
+      box-shadow: inset 0 1px 3px rgb(0 0 0 / .45), 0 0 0 1px rgb(249 181 181 / .34) !important;
+    }
+    html #mod-settings-section .mod-style-select {
+      background: linear-gradient(180deg, rgb(42 12 24 / .9), rgb(24 7 15 / .94));
+      color: var(--bv-ink);
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .18), 0 0 0 1px var(--bv-edge), 0 4px 12px rgb(0 0 0 / .3);
+    }
+    html #mod-settings-section .mod-style-select option,
+    html #popupInnards > #mod-crosshair-section .ch2-profile-select option,
+    html #popupInnards > #mod-crosshair-section .ch2-pw-select option {
+      background: #1c0811;
+      color: var(--bv-ink);
+    }
+    html #mod-settings-section .mod-key-warn { color: #ff8aa4; }
+
+    /* Manage tiles & Other Mods buttons */
+    html #mod-settings-section .ch2-profile-btn,
+    html #mod-crosshair-section .ch2-profile-btn {
+      background: linear-gradient(180deg, #9d2e57, #6d1b3b) !important;
+      color: #fff !important;
+      box-shadow: 0 3px 0 #3d0d20 !important;
+    }
+    html #mod-settings-section .ch2-profile-btn:hover,
+    html #mod-crosshair-section .ch2-profile-btn:hover {
+      background: linear-gradient(180deg, #b53867, #812147) !important;
+      box-shadow: 0 4px 0 #3d0d20 !important;
+    }
+    html #mod-settings-section .ch2-profile-btn.danger,
+    html #mod-crosshair-section .ch2-profile-btn.danger,
+    html #mod-settings-section .ch2-reset-btn {
+      background: linear-gradient(180deg, #d62d57, #9e173a) !important;
+      box-shadow: 0 4px 0 #570a1f !important;
+    }
+    html #mod-settings-section.ssb-paged .ssb-om-meta::before { background: rgb(249 181 181 / .32); }
+    html #mod-settings-section.ssb-paged .ssb-om-btn {
+      background: rgb(255 210 224 / .14);
+      border-color: var(--bv-edge);
+      color: var(--bv-ink);
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .16);
+    }
+    html #mod-settings-section.ssb-paged .ssb-om-btn:hover { background: rgb(255 210 224 / .26); color: #fff; }
+    html #mod-settings-section.ssb-paged .ssb-om-btn.quiet { background: transparent; border-color: transparent; color: var(--bv-pink-light); }
+    html #mod-settings-section.ssb-paged .ssb-om-btn.quiet:hover { background: rgb(255 210 224 / .16); color: #fff; }
+    html #mod-settings-section .ssb-storage-card { border-color: var(--bv-edge); background: var(--bv-glass); color: var(--bv-ink); }
+
+    /* Footer bar */
+    html :is(#popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])), #popupInnards.mod-tab-active:has(> #mod-crosshair-section:not([style*="display: none"]))) > #mod-settings-footer {
+      border-color: var(--bv-edge) !important;
+      background: var(--bv-bar-bg) !important;
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .16), 0 8px 22px rgb(0 0 0 / .38) !important;
+    }
+    html #mod-settings-footer .mod-footer-version::before {
+      background: radial-gradient(circle at 50% 50%, var(--bv-accent-solid) 0 38%, var(--bv-pink-light) 40% 100%) !important;
+      box-shadow: 0 0 0 1.5px rgb(249 181 181 / .4), 0 1px 4px rgb(0 0 0 / .4) !important;
+    }
+    html #mod-settings-footer .mod-footer-btn {
+      border-color: var(--bv-edge) !important;
+      background: rgb(255 210 224 / .12) !important;
+      color: var(--bv-ink) !important;
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .16), 0 2px 6px rgb(0 0 0 / .24) !important;
+    }
+    html #mod-settings-footer .mod-footer-btn:hover { background: rgb(255 210 224 / .24) !important; color: #fff !important; }
+    html #mod-settings-footer > a { color: var(--bv-pink-light) !important; }
+    html #mod-settings-footer > a:hover { color: #fff !important; }
+    html #ssb-update-status.is-latest { background: rgb(143 227 176 / .18); color: #9ff0bf; }
+    html #ssb-update-status.is-checking,
+    html #ssb-update-status.is-error,
+    html #ssb-update-status.is-reload { background: rgb(249 181 181 / .16); color: var(--bv-ink); }
+    html #ssb-update-status .ssb-upd-go { border-color: var(--bv-accent-edge); background: var(--bv-accent); }
+
+    /* Crosshair tab: preview, profile toolbar, gallery & reset */
+    html #popupInnards > #mod-crosshair-section .ch2-preview-wrap {
+      border-color: var(--bv-edge) !important;
+      box-shadow: inset 0 0 0 1px rgb(255 220 232 / .2), 0 6px 18px rgb(0 0 0 / .36);
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-bg-swatches { border-right-color: rgb(249 181 181 / .24); }
+    html #popupInnards > #mod-crosshair-section .ch2-bg-swatch { box-shadow: 0 0 0 1px rgb(249 181 181 / .45) !important; }
+    html #popupInnards > #mod-crosshair-section .ch2-bg-swatch.on,
+    html #popupInnards > #mod-crosshair-section .ch2-mini-tile.selected {
+      box-shadow: 0 0 0 2.5px var(--bv-accent-solid), 0 4px 12px var(--bv-accent-glow) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-card-profiles > .ch2-prof-tools {
+      border-color: var(--bv-edge);
+      background: linear-gradient(180deg, rgb(32 9 19 / .88), rgb(20 5 12 / .92));
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .16), 0 8px 18px rgb(0 0 0 / .34);
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-hist-row::before {
+      background: linear-gradient(90deg, transparent, rgb(249 181 181 / .28) 16%, rgb(249 181 181 / .28) 84%, transparent);
+      box-shadow: none;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-hist-btn + .ch2-hist-btn::before,
+    html #popupInnards > #mod-crosshair-section .ch2-icon-divider { background: rgb(249 181 181 / .22) !important; }
+    html #popupInnards > #mod-crosshair-section .ch2-hist-btn:hover:not(:disabled),
+    html #popupInnards > #mod-crosshair-section .ch2-icon-btn:hover { background: rgb(249 181 181 / .18) !important; color: #fff !important; }
+    html #popupInnards > #mod-crosshair-section .ch2-hist-btn:disabled { color: rgb(249 181 181 / .32) !important; }
+    html #popupInnards > #mod-crosshair-section #ch2-open-gallery-btn {
+      border-color: var(--bv-edge) !important;
+      background: linear-gradient(180deg, #8a2c4f, var(--bv-wine)) !important;
+      color: #fff !important;
+      box-shadow: inset 0 1px 0 rgb(255 220 232 / .24), 0 3px 10px rgb(0 0 0 / .3) !important;
+    }
+    html #popupInnards > #mod-crosshair-section #ch2-open-gallery-btn:hover {
+      background: linear-gradient(180deg, #a63861, #6f1d3c) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-more,
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-abtn {
+      border-color: var(--bv-edge) !important;
+      background: rgb(28 8 16 / .86) !important;
+      color: var(--bv-ink) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-more:hover,
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-abtn:hover { background: rgb(56 16 32 / .94) !important; }
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-card.selected {
+      border-color: var(--bv-accent-solid) !important;
+      background: var(--bv-glass-on) !important;
+      box-shadow: 0 0 0 2px var(--bv-accent-solid), 0 8px 18px var(--bv-accent-glow) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-card.selected .ch2-gallery-title { color: var(--bv-pink-light) !important; }
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-new-card {
+      border-color: rgb(249 181 181 / .42) !important;
+      background: rgb(24 6 14 / .48) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-disabled-msg { border-color: rgb(249 181 181 / .42) !important; }
+    html #popupInnards > #mod-crosshair-section #ch2-reset-crosshair { color: #ff8aa4 !important; }
+    html #popupInnards > #mod-crosshair-section #ch2-reset-crosshair:hover {
+      border-color: rgb(255 138 164 / .55) !important;
+      background: rgb(72 16 34 / .8) !important;
+    }
+
+    /* Scrollbars inside MODS & CROSSHAIR */
+    html :is(#popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-top-bar, #popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-settings-section.ssb-paged, #popupInnards > #mod-crosshair-section :is(.ch2-right-col, .ch2-top))::-webkit-scrollbar-thumb {
+      background: rgb(249 181 181 / .36);
+    }
+    html :is(#popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-top-bar, #popupInnards.mod-tab-active:has(> #mod-settings-section:not([style*="display: none"])) > #mod-settings-section.ssb-paged, #popupInnards > #mod-crosshair-section :is(.ch2-right-col, .ch2-top))::-webkit-scrollbar-thumb:hover {
+      background: rgb(249 181 181 / .64);
+    }
+
+    /* Match History & Live Stats panel */
+    html #ssb-stats-overlay { background: rgb(18 4 10 / .68); }
+    html #ssb-stats-panel {
+      --st-ink: var(--bv-ink);
+      --st-sub: var(--bv-sub);
+      --st-glass: var(--bv-glass);
+      --st-glass-hi: var(--bv-glass-hi);
+      --st-edge: var(--bv-edge);
+      --st-line: rgb(249 181 181 / .18);
+      --st-field: rgb(20 6 12 / .84);
+      --st-orange: var(--bv-accent);
+      --st-orange-edge: var(--bv-accent-edge);
+      --st-red: #ff7a96;
+      border-color: var(--bv-pink);
+      background: var(--bv-art-dim) center / cover no-repeat;
+    }
+    html #ssb-stats-panel .ssb-chip { background: rgb(24 6 14 / .66); }
+    html #ssb-stats-panel .ssb-chip-strong,
+    html #ssb-stats-panel .ssb-kept-pill { box-shadow: inset 0 1px 0 rgb(255 220 232 / .18); }
+    html #ssb-stats-panel .ssb-btn:hover { background: rgb(52 14 30 / .92); box-shadow: 0 6px 14px rgb(0 0 0 / .32); }
+    html #ssb-stats-panel .ssb-link { text-decoration-color: rgb(249 181 181 / .45); }
+    html #ssb-stats-panel .ssb-team-blue { --tc: #68c8ff; --st-bar: rgb(104 200 255 / .22); }
+    html #ssb-stats-panel .ssb-team-red { --tc: #ff6b7b; --st-bar: rgb(255 107 123 / .22); }
+    html #ssb-stats-panel .ssb-team-hdr { background: rgb(16 4 10 / .44); }
+    html #ssb-stats-panel tr.ssb-me td { box-shadow: inset 0 0 0 999px rgb(249 181 181 / .16); }
+    html #ssb-stats-panel .ssb-empty { border-color: rgb(249 181 181 / .35); background: rgb(24 6 14 / .55); }
+    html #ssb-stats-panel .ssb-history-search,
+    html #ssb-stats-panel .ssb-dd-btn,
+    html #ssb-stats-panel .ssb-date-pop input {
+      border-color: rgb(249 181 181 / .38);
+      background: rgb(16 5 10 / .86);
+      color: var(--bv-ink);
+    }
+    html #ssb-stats-panel .ssb-history-search:focus-visible,
+    html #ssb-stats-panel .ssb-dd.ssb-open .ssb-dd-btn,
+    html #ssb-stats-panel .ssb-date-active,
+    html #ssb-stats-panel .ssb-date[open] > summary {
+      border-color: var(--bv-pink-light);
+      background: rgb(32 9 19 / .94);
+    }
+    html #ssb-stats-panel .ssb-dd-list,
+    html #ssb-stats-panel .ssb-date-pop,
+    html #ssb-stats-panel .ssb-export-menu {
+      background: #220713;
+      border-color: var(--bv-edge);
+      box-shadow: 0 14px 32px rgb(0 0 0 / .5);
+    }
+    html #ssb-stats-panel .ssb-dd-opt:is(:hover, :focus),
+    html #ssb-stats-panel .ssb-export-menu button:is(:hover, :focus-visible) { background: rgb(249 181 181 / .18); }
+    html #ssb-stats-panel .ssb-prog-metric,
+    html #ssb-stats-panel .ssb-date-modes { background: rgb(14 4 9 / .62); }
+    html #ssb-stats-panel .ssb-prog-metric button[aria-pressed="true"],
+    html #ssb-stats-panel .ssb-date-modes button[aria-pressed="true"] { background: var(--bv-accent); color: #fff; }
+    html #ssb-stats-panel .ssb-prog-each { stroke: rgb(249 181 181 / .38); }
+    html #ssb-stats-panel .ssb-prog-dot { fill: #220713; stroke: var(--bv-pink-light); }
+    html #ssb-stats-panel .ssb-prog-ring { stroke: var(--bv-pink-light); }
+    html #ssb-stats-panel .ssb-prog-pt:is(:hover, :focus-visible) .ssb-prog-dot { fill: var(--bv-accent-solid); stroke: #fff; }
+    html #ssb-stats-panel :is(.ssb-hist-pick, .ssb-bulk input[type="checkbox"]) {
+      background-color: rgb(16 5 10 / .84);
+      box-shadow: inset 0 0 0 1.5px rgb(249 181 181 / .5);
+    }
+    html #ssb-stats-panel :is(.ssb-hist-pick, .ssb-bulk input[type="checkbox"]):checked {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.5l5 5L19.5 6.5' fill='none' stroke='%23fec5e5' stroke-width='4.2'/%3E%3C/svg%3E");
+    }
+    html #ssb-stats-panel .ssb-bulk input[type="checkbox"]:indeterminate {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' fill='none' stroke='%23fec5e5' stroke-width='4.2'/%3E%3C/svg%3E");
+    }
+    html #ssb-stats-panel :is(.ssb-body, .ssb-hist-list, .ssb-dd-list, .ssb-prog)::-webkit-scrollbar-thumb { background: rgb(249 181 181 / .36); }
+    html #ssb-stats-panel :is(.ssb-body, .ssb-hist-list, .ssb-dd-list, .ssb-prog)::-webkit-scrollbar-thumb:hover { background: rgb(249 181 181 / .64); }
+
+    /* Better HUD dialogs, toasts, tooltip, changelog & welcome guide */
+    html #ssb-dialog-overlay,
+    html #ssb-changelog-overlay,
+    html #ssb-intro-overlay { background: rgb(18 4 10 / .68); }
+    html #ssb-dialog-panel {
+      border-color: var(--bv-pink);
+      background: var(--bv-art-dim) center / cover no-repeat;
+    }
+    html #ssb-dialog-panel .ssb-dlg-title { text-shadow: 3px 3px 0 rgb(0 0 0 / .6); }
+    html #ssb-dialog-panel .ssb-dlg-input,
+    html #ssb-dialog-panel .ssb-restore-profile select {
+      border-color: var(--bv-edge-hi);
+      background: rgb(18 5 11 / .88);
+      color: var(--bv-ink);
+    }
+    html #ssb-dialog-panel .ssb-dlg-list li,
+    html #ssb-dialog-panel .ssb-restore-group {
+      background: rgb(22 6 14 / .82);
+      border: 1px solid var(--bv-edge);
+      color: var(--bv-ink);
+    }
+    html #ssb-dialog-panel .ssb-dlg-btn { box-shadow: 3.4px 3.4px 0 0 rgb(0 0 0 / .45), var(--i1) -2.1px -3.2px 2.1px 0 inset, var(--i2) 0 3.2px 4.2px 0 inset; }
+    html #ssb-dialog-panel .ssb-dlg-blue { --c: #8a2c4f; --b: var(--bv-pink); --i1: #5b1730; --i2: #c4547d; }
+    html #ssb-dialog-panel .ssb-dlg-yolk { --c: var(--bv-accent-solid); --b: var(--bv-accent-edge); --i1: #b53463; --i2: #ffa6c7; }
+    html #ssb-toast-stack .ssb-toast {
+      border-color: var(--bv-pink);
+      background: rgb(28 7 16 / .94);
+      color: var(--bv-ink);
+    }
+    html #ssb-toast-stack .ssb-toast-error { background: #470d1f; border-color: #ff6b8b; color: #ffd6e0; }
+    html #ssb-toast-stack .ssb-toast-code { background: rgb(0 0 0 / .4); color: var(--bv-pink-light); }
+    html #ssb-global-tooltip {
+      background: rgb(24 6 14 / .95) !important;
+      color: var(--bv-ink) !important;
+      border-color: var(--bv-pink) !important;
+      box-shadow: 0 6px 20px rgb(0 0 0 / .45) !important;
+    }
+    html #ssb-changelog-panel,
+    html #ssb-intro-panel {
+      background: #240814;
+      border-color: var(--bv-pink);
+      color: var(--bv-ink);
+    }
+    html #ssb-changelog-panel .ssb-changelog-head,
+    html #ssb-intro-panel .ssb-intro-head {
+      background: linear-gradient(180deg, #7a2244, #4e1229);
+      border-bottom-color: var(--bv-pink);
+    }
+    html #ssb-changelog-panel .ssb-changelog-kicker,
+    html #ssb-intro-panel .ssb-intro-kicker { color: var(--bv-pink-light); }
+    html #ssb-changelog-panel .ssb-changelog-item,
+    html #ssb-intro-panel .ssb-intro-card {
+      border-color: var(--bv-edge);
+      background: rgb(255 210 224 / .08);
+    }
+    html #ssb-changelog-panel .ssb-changelog-tag,
+    html #ssb-changelog-panel .ssb-changelog-switcher select,
+    html #ssb-changelog-panel button {
+      background: rgb(18 5 11 / .86);
+      border-color: var(--bv-edge-hi);
+      color: var(--bv-ink);
+    }
+    html #ssb-changelog-panel button:hover { background: rgb(56 16 32 / .94); }
   `;
 
   // At document-start <head> may not exist yet, so the style goes on <html> and the loading screen is themed
