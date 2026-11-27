@@ -10,7 +10,7 @@
 
 [![Install Blossom V4](https://img.shields.io/badge/Install_Blossom_V4-one_click-f9b5b5?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://raw.githubusercontent.com/Virojet/Shell-Shockers-Blossom-V4-Theme/main/Shell-Shockers-Blossom-V4.user.js)
 
-[![Version](https://img.shields.io/badge/version-4.0.4-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
+[![Version](https://img.shields.io/badge/version-4.0.5-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](./LICENSE)
 [![Installs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fvirojet-blossom-v4%2Finstalls&query=%24.value&label=installs&color=2ea44f&style=flat-square)](#privacy)
 
@@ -26,6 +26,11 @@
 
 > [!TIP]
 > **Theme not showing?** Chrome, Edge, Brave and Opera need one extra switch: open your browser's **Extensions** page → **Tampermonkey** → **Details** → turn on **Allow User Scripts**. Then reload the game. [Step by step for each browser](https://github.com/Virojet/Shell-Shockers-Better-Hud-Mod#allow-user-scripts)
+
+## What's new in 4.0.5
+
+- Fixed Blossom V4 occasionally failing to apply after a page reload (handles late `readyState`, `<body>` creation/replacement, and `pageshow` so the stylesheet always settles after `<head>`).
+- Themed Better HUD's **Pinned Match Stats** card on the pause/respawn screen with Blossom V4's rose border, dark-wine glass, and matching K/D/KDR colors.
 
 ## What's new in 4.0.4
 

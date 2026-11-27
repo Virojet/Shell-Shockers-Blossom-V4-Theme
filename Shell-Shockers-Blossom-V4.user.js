@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.4
+// @version      4.0.5
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -105,7 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
-  css.dataset.version = "4.0.4";
+  css.dataset.version = "4.0.5";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -768,17 +768,73 @@
       color: var(--bv-ink);
     }
     html #ssb-changelog-panel button:hover { background: rgb(56 16 32 / .94); }
+
+    /* Pinned Match Stats on the pause / respawn screen */
+    html #ssb-pinned-stats {
+      border: 2px solid var(--bv-pink) !important;
+      border-radius: 12px !important;
+      background: var(--bv-art-dim) center / cover no-repeat !important;
+      box-shadow: 0 10px 26px rgb(0 0 0 / .44), inset 0 1px 0 rgb(255 220 232 / .2) !important;
+      color: var(--bv-ink) !important;
+    }
+    html #ssb-pinned-stats > .title {
+      background: linear-gradient(180deg, rgb(64 16 36 / .88), rgb(38 10 22 / .8)) !important;
+      border-bottom: 1px solid var(--bv-edge) !important;
+      color: var(--bv-pink-light) !important;
+      text-shadow: 0 2px 6px rgb(0 0 0 / .65) !important;
+    }
+    html #ssb-pinned-stats-content {
+      background: var(--bv-glass) !important;
+    }
+    html #ssb-pinned-stats-content > div > span:first-child {
+      color: var(--bv-sub) !important;
+      letter-spacing: 0.06em;
+    }
+    html #ssb-pinned-stats-content > div > span:last-child {
+      color: var(--bv-ink) !important;
+      text-shadow: 0 2px 6px rgb(0 0 0 / .7) !important;
+    }
+    html #ssb-pinned-stats-content > div:nth-child(2) > span:last-child {
+      color: #ff7a96 !important;
+    }
+    html #ssb-pinned-stats-content > div:nth-child(3) > span:last-child {
+      color: var(--bv-pink-light) !important;
+    }
+    html #ssb-pinned-stats .ssb-admin-cell:focus {
+      background-color: rgb(249 181 181 / .16) !important;
+    }
   `;
 
   // At document-start <head> may not exist yet, so the style goes on <html> and the loading screen is themed
-  // from its first frame. Once <body> exists it moves there: after every stylesheet in <head>, so the rules
-  // below win ties with the game's own without needing !important.
-  const settle = () => document.body.appendChild(css);
-  const mount = () => {
-    document.documentElement.appendChild(css);
-    document.body ? settle() : document.addEventListener("DOMContentLoaded", settle, { once: true });
+  // from its first frame. Once <body> exists it moves into <body> (after every stylesheet in <head>) so ties
+  // resolve in our favour, and stays attached across fast/cached reloads, bfcache, or DOM replacements.
+  const ensureMounted = () => {
+    if (document.body) {
+      if (css.parentNode !== document.body) document.body.appendChild(css);
+    } else if (document.documentElement && !css.isConnected) {
+      document.documentElement.appendChild(css);
+    }
   };
-  document.documentElement ? mount() : new MutationObserver((_, o) => document.documentElement && (o.disconnect(), mount())).observe(document, { childList: true });
+  let rootObs = null;
+  const startMount = () => {
+    ensureMounted();
+    if (!rootObs && document.documentElement) {
+      rootObs = new MutationObserver(ensureMounted);
+      rootObs.observe(document.documentElement, { childList: true });
+    }
+  };
+  if (document.documentElement) startMount();
+  else new MutationObserver((_, o) => {
+    if (document.documentElement) {
+      o.disconnect();
+      startMount();
+    }
+  }).observe(document, { childList: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureMounted, { once: true });
+  }
+  window.addEventListener("load", ensureMounted, { once: true });
+  window.addEventListener("pageshow", ensureMounted);
 
   // install-counter:begin
   // Install counter: one anonymous hit per browser, sent once and never again (key "ssBlossomV4-install-counted").
