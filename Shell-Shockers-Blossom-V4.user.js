@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.5
+// @version      4.0.6
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -105,7 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
-  css.dataset.version = "4.0.5";
+  css.dataset.version = "4.0.6";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -601,6 +601,21 @@
     }
     html #popupInnards > #mod-crosshair-section #ch2-open-gallery-btn:hover {
       background: linear-gradient(180deg, #a63861, #6f1d3c) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-tile,
+    html #popupInnards > #mod-crosshair-section .ch2-gallery-mini-preview,
+    html #ssb-intro-panel .ssb-intro-xh-view {
+      background: rgb(28 8 16 / .86) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-tile {
+      border-color: var(--bv-edge) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-tile:hover {
+      background: rgb(56 16 32 / .94) !important;
+      border-color: var(--bv-pink) !important;
+    }
+    html #popupInnards > #mod-crosshair-section .ch2-mini-tile.selected {
+      border-color: var(--bv-pink-light) !important;
     }
     html #popupInnards > #mod-crosshair-section .ch2-mini-more,
     html #popupInnards > #mod-crosshair-section .ch2-gallery-abtn {
