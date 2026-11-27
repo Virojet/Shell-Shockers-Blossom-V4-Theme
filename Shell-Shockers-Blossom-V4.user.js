@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.6
+// @version      4.0.7
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -105,7 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
-  css.dataset.version = "4.0.6";
+  css.dataset.version = "4.0.7";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -784,30 +784,32 @@
     }
     html #ssb-changelog-panel button:hover { background: rgb(56 16 32 / .94); }
 
-    /* Pinned Match Stats on the pause / respawn screen */
+    /* Pinned Match Stats & pause volume controls: match Challenges and Change Your Weapon */
     html #ssb-pinned-stats {
-      border: 2px solid var(--bv-pink) !important;
-      border-radius: 12px !important;
+      border: 3.5px solid #fff !important;
+      border-radius: 8px !important;
       background: var(--bv-art-dim) center / cover no-repeat !important;
-      box-shadow: 0 10px 26px rgb(0 0 0 / .44), inset 0 1px 0 rgb(255 220 232 / .2) !important;
-      color: var(--bv-ink) !important;
+      box-shadow: 3px 3px 0 #000 !important;
+      color: #fff !important;
     }
     html #ssb-pinned-stats > .title {
-      background: linear-gradient(180deg, rgb(64 16 36 / .88), rgb(38 10 22 / .8)) !important;
-      border-bottom: 1px solid var(--bv-edge) !important;
-      color: var(--bv-pink-light) !important;
-      text-shadow: 0 2px 6px rgb(0 0 0 / .65) !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      border-bottom: 1px solid rgb(249 181 181 / .28) !important;
+      color: #fff !important;
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content {
-      background: var(--bv-glass) !important;
+      background: rgb(24 6 14 / .48) !important;
     }
     html #ssb-pinned-stats-content > div > span:first-child {
-      color: var(--bv-sub) !important;
+      color: var(--bv-pink) !important;
       letter-spacing: 0.06em;
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content > div > span:last-child {
-      color: var(--bv-ink) !important;
-      text-shadow: 0 2px 6px rgb(0 0 0 / .7) !important;
+      color: #fff !important;
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content > div:nth-child(2) > span:last-child {
       color: #ff7a96 !important;
@@ -817,6 +819,36 @@
     }
     html #ssb-pinned-stats .ssb-admin-cell:focus {
       background-color: rgb(249 181 181 / .16) !important;
+    }
+    html .pause-game-weapon-select #mod-volDisplay {
+      color: #fff !important;
+      text-shadow: var(--ss-text-shadow-1) !important;
+    }
+    html .pause-game-weapon-select .mod-vol-slider {
+      background: rgb(24 6 14 / .68) !important;
+      border: 1px solid var(--bv-pink) !important;
+    }
+    html .pause-game-weapon-select .mod-vol-slider::-webkit-slider-thumb {
+      background: var(--bv-accent-solid) !important;
+      border-color: #fff !important;
+    }
+    html .pause-game-weapon-select .mod-vol-slider::-moz-range-thumb {
+      background: var(--bv-accent-solid) !important;
+      border-color: #fff !important;
+    }
+    html .pause-game-weapon-select #resetVolBtn {
+      background: linear-gradient(180deg, #8a2c4f, var(--bv-wine)) !important;
+      border: 1.5px solid var(--bv-pink) !important;
+      color: #fff !important;
+      text-shadow: none !important;
+      box-shadow: var(--ss-box-shadow-1) !important;
+    }
+    html .pause-game-weapon-select #resetVolBtn:hover {
+      background: linear-gradient(180deg, #a63861, #6f1d3c) !important;
+      border-color: #fff !important;
+    }
+    html .pause-game-weapon-select #resetVolBtn::before {
+      background: var(--bv-pink-light) !important;
     }
   `;
 
