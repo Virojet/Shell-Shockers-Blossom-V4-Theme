@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.7
+// @version      4.0.8
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -105,7 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
-  css.dataset.version = "4.0.7";
+  css.dataset.version = "4.0.8";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -852,12 +852,27 @@
     }
   `;
 
-  // At document-start <head> may not exist yet, so the style goes on <html> and the loading screen is themed
-  // from its first frame. Once <body> exists it moves into <body> (after every stylesheet in <head>) so ties
-  // resolve in our favour, and stays attached across fast/cached reloads, bfcache, or DOM replacements.
+  // At document-start <head> and <body> may not exist yet, so the style starts on <html> to theme the loading
+  // screen from frame 0. Shell Shockers appends its own stylesheets (style.min.css and Vue <style> tags) inside
+  // <body>, not <head>, so once <body> exists we keep #blossom-v4-style after any sibling <style>/<link> in <body>
+  // (never touching css.media so Mod Menu's disable() stays respected).
+  const needsMoveAfterBodyStyles = () => {
+    for (let n = css.nextElementSibling; n; n = n.nextElementSibling) {
+      if (n.tagName === "STYLE" || (n.tagName === "LINK" && n.rel === "stylesheet")) return true;
+    }
+    return false;
+  };
+  let bodyObs = null, watchedBody = null;
   const ensureMounted = () => {
-    if (document.body) {
-      if (css.parentNode !== document.body) document.body.appendChild(css);
+    const body = document.body;
+    if (body) {
+      if (css.parentNode !== body || needsMoveAfterBodyStyles()) body.appendChild(css);
+      if (watchedBody !== body) {
+        if (bodyObs) bodyObs.disconnect();
+        watchedBody = body;
+        bodyObs = new MutationObserver(ensureMounted);
+        bodyObs.observe(body, { childList: true });
+      }
     } else if (document.documentElement && !css.isConnected) {
       document.documentElement.appendChild(css);
     }

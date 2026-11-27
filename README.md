@@ -10,7 +10,7 @@
 
 [![Install Blossom V4](https://img.shields.io/badge/Install_Blossom_V4-one_click-f9b5b5?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://raw.githubusercontent.com/Virojet/Shell-Shockers-Blossom-V4-Theme/main/Shell-Shockers-Blossom-V4.user.js)
 
-[![Version](https://img.shields.io/badge/version-4.0.7-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
+[![Version](https://img.shields.io/badge/version-4.0.8-5b1730?style=flat-square)](./Shell-Shockers-Blossom-V4.user.js)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](./LICENSE)
 [![Installs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fvirojet-blossom-v4%2Finstalls&query=%24.value&label=installs&color=2ea44f&style=flat-square)](#privacy)
 
@@ -26,6 +26,10 @@
 
 > [!TIP]
 > **Theme not showing?** Chrome, Edge, Brave and Opera need one extra switch: open your browser's **Extensions** page → **Tampermonkey** → **Details** → turn on **Allow User Scripts**. Then reload the game. [Step by step for each browser](https://github.com/Virojet/Shell-Shockers-Better-Hud-Mod#allow-user-scripts)
+
+## What's new in 4.0.8
+
+- Fixed the real cause of partial/missing theming on reloads: Shell Shockers injects `style.min.css` and its Vue `<style>` tags inside `<body>` after `<body>` is created, so `#blossom-v4-style` now observes `<body>` and stays positioned after every sibling stylesheet on every reload.
 
 ## What's new in 4.0.7
 
