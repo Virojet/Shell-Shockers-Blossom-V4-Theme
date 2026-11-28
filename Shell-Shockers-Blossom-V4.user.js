@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blossom V4 Theme
 // @namespace    blossom-v4.shellshock.theme
-// @version      4.0.9
+// @version      4.0.10
 // @description  Revamped Blossom V3 for today's Shell Shockers: black and pink menus over cherry blossom art, a pink HUD and "You blossomed" kill messages. CSS only.
 // @author       Virojet (Blossom V2 and V3 by ThatOneGuySS)
 // @license      MIT
@@ -105,7 +105,7 @@
   const ART = "https://raw.githubusercontent.com/Foggier01/Blossom-V3-Fix-by-Foggier/main/";
   const css = document.createElement("style");
   css.id = "blossom-v4-style";
-  css.dataset.version = "4.0.9";
+  css.dataset.version = "4.0.10";
   css.textContent = `
     /* The game paints its UI with --ss-* colours, so most of the theme is just new values for them.
        html:root outranks the game's :root, so these win even before the style moves into <body>. */
@@ -784,104 +784,41 @@
     }
     html #ssb-changelog-panel button:hover { background: rgb(56 16 32 / .94); }
 
-    /* Pinned Match Stats & pause volume controls: sleek glass tiles + crisp Blossom V4 borders */
+    /* Pinned Match Stats & pause volume controls: color and background only, matching Challenges & Weapon Select */
     html #ssb-pinned-stats {
-      border: 3.5px solid #fff !important;
-      border-radius: 10px !important;
-      background:
-        linear-gradient(155deg, rgb(22 5 13 / .46) 0%, rgb(58 14 34 / .28) 52%, rgb(16 4 10 / .58) 100%),
-        var(--bv-art) center 26% / cover no-repeat !important;
-      box-shadow: 3px 3px 0 #000, 0 10px 24px rgb(16 4 10 / .42), inset 0 1px 0 rgb(255 234 242 / .38) !important;
+      border-color: #fff !important;
+      border-width: 3.5px !important;
+      border-radius: 8px !important;
+      background: var(--bv-art-dim) center / cover no-repeat !important;
+      box-shadow: 3px 3px 0 #000 !important;
       color: #fff !important;
     }
     html #ssb-pinned-stats > .title {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 10px !important;
-      padding: 8px 14px !important;
-      font-size: 16px !important;
-      letter-spacing: 0.14em !important;
-      background: linear-gradient(180deg, rgb(16 4 10 / .84) 0%, rgb(34 9 20 / .72) 100%) !important;
-      background-color: transparent !important;
-      backdrop-filter: blur(8px) saturate(1.25);
-      border-bottom: 1.5px solid rgb(249 181 181 / .45) !important;
-      box-shadow: inset 0 -1px 0 rgb(0 0 0 / .45), inset 0 1px 0 rgb(255 232 240 / .2) !important;
+      background: rgb(16 4 10 / .56) !important;
+      background-color: rgb(16 4 10 / .56) !important;
+      border-bottom: 1.5px solid rgb(249 181 181 / .35) !important;
       color: #fff !important;
-      text-shadow: 0 2px 0 rgb(0 0 0 / .9) !important;
-    }
-    html #ssb-pinned-stats > .title::before,
-    html #ssb-pinned-stats > .title::after {
-      content: "";
-      flex: 1;
-      max-width: 58px;
-      height: 1.5px;
-      border-radius: 999px;
-    }
-    html #ssb-pinned-stats > .title::before {
-      background: linear-gradient(90deg, transparent, var(--bv-pink-light));
-    }
-    html #ssb-pinned-stats > .title::after {
-      background: linear-gradient(270deg, transparent, var(--bv-pink-light));
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content {
-      background: transparent !important;
-      padding: 10px 12px 12px !important;
-      gap: 9px !important;
-    }
-    html #ssb-pinned-stats-content > div {
-      width: 100% !important;
-      box-sizing: border-box !important;
-      padding: 8px 6px 7px !important;
-      gap: 2px !important;
-      border-radius: 8px !important;
-      background: linear-gradient(180deg, rgb(18 5 11 / .64) 0%, rgb(32 9 20 / .78) 100%) !important;
-      backdrop-filter: blur(7px) saturate(1.25);
-      border: 1.5px solid rgb(249 181 181 / .38) !important;
-      border-top: 2px solid rgb(255 255 255 / .78) !important;
-      box-shadow: inset 0 1px 0 rgb(255 232 240 / .22), 0 4px 10px rgb(0 0 0 / .36) !important;
-      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
-    }
-    html #ssb-pinned-stats-content > div:hover {
-      background: linear-gradient(180deg, rgb(28 8 18 / .72) 0%, rgb(46 13 28 / .84) 100%) !important;
-      border-color: rgb(254 197 229 / .68) !important;
-      box-shadow: inset 0 1px 0 rgb(255 232 240 / .32), 0 6px 14px rgb(0 0 0 / .42) !important;
-    }
-    html #ssb-pinned-stats-content > div:nth-child(2) {
-      border-top-color: #ff6b8b !important;
-    }
-    html #ssb-pinned-stats-content > div:nth-child(3) {
-      border-top-color: var(--bv-pink-light) !important;
-    }
-    html #ssb-pinned-stats-content > div:nth-child(n+4) {
-      border-top-color: var(--bv-pink) !important;
+      background: rgb(24 6 14 / .24) !important;
     }
     html #ssb-pinned-stats-content > div > span:first-child {
-      color: rgb(254 210 228 / .9) !important;
-      font-size: 11px !important;
-      letter-spacing: 0.12em !important;
-      line-height: 1.15 !important;
-      text-shadow: 0 1px 2px rgb(0 0 0 / .88) !important;
+      color: var(--bv-pink) !important;
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content > div > span:last-child {
       color: #fff !important;
-      font-size: 25px !important;
-      line-height: 1.1 !important;
-      font-variant-numeric: tabular-nums;
-      text-shadow: 0 2px 0 rgb(0 0 0 / .9), 0 0 14px rgb(255 255 255 / .16) !important;
+      text-shadow: var(--ss-text-shadow-1) !important;
     }
     html #ssb-pinned-stats-content > div:nth-child(2) > span:last-child {
       color: #ff7b99 !important;
-      text-shadow: 0 2px 0 rgb(0 0 0 / .9), 0 0 14px rgb(255 107 139 / .28) !important;
     }
     html #ssb-pinned-stats-content > div:nth-child(3) > span:last-child {
-      color: #ffbae0 !important;
-      text-shadow: 0 2px 0 rgb(0 0 0 / .9), 0 0 14px rgb(255 186 224 / .32) !important;
+      color: var(--bv-pink-light) !important;
     }
     html #ssb-pinned-stats .ssb-admin-cell:focus {
-      background-color: rgb(249 181 181 / .18) !important;
-      outline: none !important;
-      border-radius: 4px;
+      background-color: rgb(249 181 181 / .16) !important;
     }
     html .pause-game-weapon-select #mod-volDisplay {
       color: #fff !important;
